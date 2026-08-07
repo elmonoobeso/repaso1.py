@@ -62,10 +62,65 @@ params={"factor": 2}
 uno=ejercicio4(batch1,batch2,params=params)
 #ES CLAVE: ACORDARSE QUE DESPUES DE * TENEMOS UNA TUPLA.. Si no hubiesemos hecho un for dentro de un for hubieramos multiplado las tuplas enteras(duplicandolas) no lo valores de dentro!
 
-#ejercicio5
+#ejercicio5 #aprendiendo a usar libreia logging
+import logging
+logging.basicConfig(level=logging.INFO,filemode="w",filename="errores_lista")
 dataset = [{"val": 10, "div": 2}, {"val": 5, "div": 0}, {"val": None, "div": 1}]
-def ejercicio5(dataset:list):
+def ejercicio5(dataset:list[dict[str,any]]):
     try:
-        limpio=[i for grupo in dataset for i in grupo if type(i) is int]
-    except:
-        
+        logging.info(f"Intentando iterar sobre la lista...")
+        limpio=[grupo["val"]//grupo["div"] for grupo in dataset for grupo.values() in grupo if i is int]
+        logging.info(f"lista iterada")
+        print(limpio)
+        return
+
+    except Exception as error:
+        logging.error(f"no se pudo pri , el archivo¨{dataset} {error}")
+        return 
+ejer5=ejercicio5(dataset)
+#ejercicio 5 corregido:
+import logging
+from typing import Dict, List, Any
+
+# Configuración de logging (el log se guardará en tu directorio de trabajo)
+logging.basicConfig(level=logging.INFO, filemode="w", filename="errores_lista.log")
+
+dataset = [{"val": 10, "div": 2}, {"val": 5, "div": 0}, {"val": None, "div": 1}, {}]
+
+def ejercicio5(dataset: List[Dict[str, Any]]) -> Dict[str, List[Any]]:
+    resultados_exitosos = []
+    registro_errores = []
+    
+    for registro in dataset:
+        # 1. Truthiness (Evaluación implícita): Si el diccionario está vacío {}, lo ignoramos
+        if not registro:
+            logging.info("Se omitió un registro vacío.")
+            continue
+            
+        try:
+            # 2. Extracción y Operación
+            resultado = registro["val"] / registro["div"]
+            resultados_exitosos.append(resultado)
+            
+        # 3. Bloques de Excepciones Específicos[cite: 2]
+        except ZeroDivisionError as e:
+            msg = f"Fallo por división por cero en {registro}. Detalle: {e}"
+            registro_errores.append(msg)
+            logging.error(msg)
+            
+        except TypeError as e:
+            msg = f"Fallo de tipo de dato (nulos/textos) en {registro}. Detalle: {e}"
+            registro_errores.append(msg)
+            logging.error(msg)
+            
+        # 4. El Salvavidas Genérico (siempre va al final)[cite: 2]
+        except Exception as e:
+            msg = f"Fallo catastrófico inesperado en {registro}. Detalle: {e}"
+            registro_errores.append(msg)
+            logging.error(msg)
+            
+    # 5. Retornamos la estructura de datos exigida
+    return {"resultados": resultados_exitosos, "errores": registro_errores}
+
+# Ejecución
+
