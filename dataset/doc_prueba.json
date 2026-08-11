@@ -1,0 +1,27 @@
+[
+    {
+        "Producto": "Aspirina",
+        "Stock": 100,
+        "Precio": 4.5
+    },
+    {
+        "Producto": "Paracetamol",
+        "Stock": "error",
+        "Precio": 2.0
+    },
+    {
+        "Producto": "Omeprazol",
+        "Stock": 250,
+        "Precio": 10.5
+    },
+    {
+        "Producto": "Ibuprofeno",
+        "Stock": 0,
+        "Precio": 3.0
+    },
+    {
+        "Producto": "Ibuprofeno",
+        "Stock": 50,
+        "Precio": 3.0
+    }
+]

@@ -33,7 +33,7 @@ class CSVAnalyzer:
                           resultado.append(calculo)
                           print(f"Producto: {nombre}, total:{calculo}")
                           
-                     except Exception as error:
+                     except Exception as error:#exception es muy general podemos poner los diferentes tipos de errores y que se metan en una lista para que nos de mas info... buenas practicas
                           errores.append(error)
                 print(errores,resultado)
                 return
