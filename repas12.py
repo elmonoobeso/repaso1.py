@@ -11,8 +11,8 @@ class CSVAnalyzer:
              columna=next(reader,None)
              validos=[]
              for linea in reader:
-                if row:
-                     validos.append(row)
+                if linea:
+                     validos.append(linea)
              return
 
             
@@ -23,17 +23,20 @@ class CSVAnalyzer:
                 reader=csv.reader(inventario)
                 next(reader,None)
                 resultado=[]
+                errores=[]
                 for line in reader:
                      try:
                           nombre,stock,precio=line
                           stock_int=int(stock)
                           precio_flo=float(precio)
                           calculo=total(stock_int,precio_flo)
+                          resultado.append(calculo)
                           print(f"Producto: {nombre}, total:{calculo}")
                           
                      except Exception as error:
-                          print(error)
-                return resultado
+                          errores.append(error)
+                print(errores,resultado)
+                return
 
 prueba=CSVAnalyzer(ruta)
 prueba.parseo()
