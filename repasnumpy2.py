@@ -18,6 +18,20 @@ datos=datos.real
 dataset_reducido=np.matmul(datos,top_6)
 print(dataset_reducido.shape)
 print(f"aqui va el bicho\n {dataset_reducido}")
-np.savetxt('resultado_pca.csv',dataset_reducido,delimiter=',',header='parm_1,parm_2,parm3,parm4,parm5,parm6',comments='')
+#np.savetxt('resultado_pca.csv',dataset_reducido,delimiter=',',header='parm_1,parm_2,parm3,parm4,parm5,parm6',comments='')
+datos_copia=datos.copy()
+fraccion1=datos_copia[0:7,0:7]
+fila_demax= np.max(fraccion1,axis=0)#maximos por columna
+fraccion_fila=np.vstack([fraccion1,fila_demax])
+max_total=np.max(fraccion1)
+min_total=np.min(fraccion1)
+columna_demax=np.max(fraccion_fila,axis=1).reshape(-1,1)#maximos por fila
+fraccion_todo=np.hstack([fraccion_fila,columna_demax])
+np.savetxt('resultado_fraccion',fraccion_todo,delimiter=',',comments='')
+print(f"maximos y minimos:{max_total},{min_total}")
+#practica con nan y mascaras
+fraccion_nan=np.isnan(fraccion1)
+condicion1= fraccion1<40
+combi_mascaras= ~fraccion_nan & condicion1 
 
 
