@@ -30,3 +30,8 @@ df["ingresos_medios_categoria"]=df.groupby("categoria")["ingresos"].transform("m
 print(df["ingresos_medios_categoria"])
 df["categoria_precio"]=pd.cut(df["precio"],bins=(0,4,7,100),labels=("Barato","medio","caro"))
 print(df["categoria_precio"])
+combinada=df.merge(inventario_extra,on="producto",how="left")
+#se mmantienen en la ultima tabla, todas las de la izquierda y solo las que coinciden en la derecha.
+print(df.pivot(index="categoria",columns="mes_entrada",values="ingresos"))#aqui hay algo mal, los meses me da muchos nan, bueno realmente quiza no... si no hay ingresos de ciertas categoria en ciertos meses es normal.
+filtro=combinada["proveedor"].isnull()==False
+print(combinada.loc[filtro,["producto","proveedor"]])
