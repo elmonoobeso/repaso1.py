@@ -1,0 +1,30 @@
+# Manejo y analisis de datos tabulares - usado en todos los ejercicios de /pandas, /numpy
+# y en el analisis de los agentes (Agentes/).
+# Tabular data handling and analysis - used across /pandas, /numpy exercises and in the
+# agents' analysis (Agentes/).
+pandas
+numpy
+
+# Graficas simples (histograma en pandas/2026-08-26_duplicados-nulos-outliers-iqr.py).
+# Simple plotting (histogram in pandas/2026-08-26_duplicados-nulos-outliers-iqr.py).
+matplotlib
+
+# Peticiones HTTP a APIs publicas (API de la FDA en Agentes/agente_2).
+# HTTP requests to public APIs (FDA API in Agentes/agente_2).
+requests
+
+# Carga de variables de entorno desde .env (claves de API) sin exponerlas en el codigo.
+# Loads environment variables from .env (API keys) without exposing them in the code.
+python-dotenv
+
+# Integracion con el modelo de lenguaje Gemini para interpretar los analisis (Agentes/).
+# Nota: este paquete esta descatalogado por Google a favor de "google-genai" - lo usamos
+# porque sigue funcionando, pero es candidato a migracion futura.
+# Integration with the Gemini language model to interpret the analyses (Agentes/).
+# Note: this package is deprecated by Google in favor of "google-genai" - we use it
+# because it still works, but it is a candidate for future migration.
+google-generativeai
+
+# Motor que pandas necesita por debajo para leer/escribir archivos .xlsx (exportar_resultados).
+# Engine pandas needs under the hood to read/write .xlsx files (exportar_resultados).
+openpyxl

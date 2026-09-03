@@ -1,0 +1,9 @@
+# Salidas generadas por los scripts — no se versionan resultados, solo código.
+# Script-generated outputs — we version code, not results.
+analisis_es/
+*.xlsx
+~$*
+
+# Python
+__pycache__/
+*.pyc
